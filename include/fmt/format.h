@@ -3374,6 +3374,11 @@ typename buffer_context<Char>::iterator internal::vformat_to(
                                           args);
 }
 
+#ifndef FMT_HEADER_ONLY
+extern template format_context::iterator internal::vformat_to(
+    internal::buffer<char>&, string_view, basic_format_args<format_context>);
+#endif
+
 template <typename S, typename Char = char_t<S>,
           FMT_ENABLE_IF(internal::is_string<S>::value)>
 inline typename buffer_context<Char>::iterator vformat_to(
